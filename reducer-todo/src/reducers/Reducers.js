@@ -24,6 +24,22 @@ const reducer = (state, action) => {
           },
         ],
       };
+    case "TOGGLE_TODO":
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((item) => {
+            return item.id === action.payload
+              ? { ...item, completed: !item.completed }
+              : item;
+          }),
+        ],
+      };
+    case "CLEAR_TODO":
+      return {
+        ...state,
+        todos: [...state.todos.filter((todo) => todo.completed === false)],
+      };
     default:
       return state;
   }

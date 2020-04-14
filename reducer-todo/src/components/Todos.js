@@ -25,10 +25,21 @@ const Todos = () => {
           Add New Todo
         </button>
         {console.log(state.todos)}
-        <button>Clear Todos</button>
+        <button onClick={() => dispatch({ type: "CLEAR_TODO" })}>
+          Clear Todos
+        </button>
         <div>
           {state.todos.map((indTodo) => {
-            return <h3>{indTodo.todo}</h3>;
+            return (
+              <h3
+                className={`${indTodo.completed ? " completed" : ""}`}
+                onClick={() =>
+                  dispatch({ type: "TOGGLE_TODO", payload: indTodo.id })
+                }
+              >
+                {indTodo.todo}
+              </h3>
+            );
           })}
         </div>
       </div>
